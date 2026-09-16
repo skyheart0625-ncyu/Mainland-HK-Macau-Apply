@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
-<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>國立嘉義大學教職員赴陸港澳申請指引</title>
-	<style type="text/css">* {
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>國立嘉義大學教職員赴陸港澳申請指引</title>
+    <style>
+        * {
             box-sizing: border-box;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         }
@@ -155,49 +158,83 @@
             font-size: 0.88rem;
             line-height: 1.5;
         }
-	</style>
+    </style>
 </head>
 <body>
+
 <div class="container">
-<h1>國立嘉義大學教職員赴陸港澳申請指引</h1>
+    <h1>國立嘉義大學教職員赴陸港澳申請指引</h1>
+    
+    <div class="form-group">
+        <label for="identity">1. 請選擇您的身分類別：</label>
+        <select id="identity" onchange="toggleRankSelect()">
+            <option value="">-- 請選擇身分 --</option>
+            <option value="teacher">一般專任教師（未兼任行政職務）</option>
+            <option value="admin_teacher">兼任行政職務教師 / 公務人員</option>
+            <option value="contract_staff">一般未分簡薦委人員（專案/契約人員）</option>
+        </select>
+    </div>
 
-<div class="form-group"><label for="identity">1. 請選擇您的身分類別：</label> <select id="identity" onchange="toggleRankSelect()"><option value="">-- 請選擇身分 --</option><option value="teacher">一般專任教師（未兼任行政職務）</option><option value="admin_teacher">兼任行政職務教師 / 公務人員</option><option value="contract_staff">一般未分簡薦委人員（專案/契約人員）</option> </select></div>
+    <div class="form-group" id="rankGroup" style="display: none;">
+        <label for="rank">2. 請選擇兼任行政職務層級（以支領主管加給為依據）：</label>
+        <select id="rank">
+            <option value="rank12">相當簡任第 12 職等以上</option>
+            <option value="rank11">相當簡任第 11 職等（一級主管：如教務長、院長、系主任、中心主任等）</option>
+            <option value="rank10">相當簡任第 10 職等以下（二級主管：如組長等）</option>
+        </select>
+    </div>
 
-<div class="form-group" id="rankGroup" style="display: none;"><label for="rank">2. 請選擇兼任行政職務層級（以支領主管加給為依據）：</label> <select id="rank"><option value="rank12">相當簡任第 12 職等以上</option><option value="rank11">相當簡任第 11 職等（一級主管：如教務長、院長、系主任、中心主任等）</option><option value="rank10">相當簡任第 10 職等以下（二級主管：如組長等）</option> </select></div>
+    <div class="form-group">
+        <label for="exitDate">3. 預計出境日期（查驗通關日）：</label>
+        <input type="date" id="exitDate">
+        <div class="date-hint">⚠️ 提醒：若搭乘凌晨航班（如 01:00 飛機），須於前一日晚上（如 23:00）通報出關，請輸入前一日之日期，以免無法出境！</div>
+    </div>
 
-<div class="form-group"><label for="exitDate">3. 預計出境日期（查驗通關日）：</label> <input id="exitDate" type="date" />
-<div class="date-hint">⚠️ 提醒：若搭乘凌晨航班（如 01:00 飛機），須於前一日晚上（如 23:00）通報出關，請輸入前一日之日期，以免無法出境！</div>
+    <div class="form-group">
+        <label for="destination">4. 預計前往地點（含入境與不入境過境轉機）：</label>
+        <select id="destination">
+            <option value="mainland">僅前往中國大陸地區</option>
+            <option value="hk_macau">僅前往香港或澳門地區</option>
+            <option value="both">同時前往大陸及港澳地區（連訪/轉機）</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="purpose">5. 出國事由：</label>
+        <select id="purpose">
+            <option value="official">因公務事由前往</option>
+            <option value="private">非因公務事由前往（觀光、休假、私事）</option>
+        </select>
+    </div>
+
+    <div class="form-group" id="meetGroup" style="display: none;">
+        <label for="meetTarget">6. 是否會見或聯繫特定身分人員（赴港澳）：</label>
+        <select id="meetTarget">
+            <option value="no">未會見或聯繫特定身分人員</option>
+            <option value="yes">會見或聯繫特定身分人員</option>
+        </select>
+    </div>
+
+    <button onclick="calculateGuidance()">產生申請指引與辦理期限</button>
+
+    <div id="result" class="result-card">
+        <div class="tag" id="identityTag">判斷結果</div>
+        <div id="deadlineBadge" class="deadline-badge" style="display:none;"></div>
+        <div class="result-title" id="resultTitle">辦理程序與作業流程指引：</div>
+        <ol class="step-list" id="stepList"></ol>
+        
+        <div class="download-box" id="downloadBox">
+            📁 <strong>所需申請表件與登錄連結：</strong>
+            <ul id="downloadList"></ul>
+            <hr style="border:0; border-top:1px solid #bae6fd; margin:10px 0;">
+            👉 <a href="https://www.ncyu.edu.tw/personnel/Subject/Detail/232082?nodeId=35206" target="_blank" rel="noopener noreferrer">前往國立嘉義大學人事室—赴陸港澳專區首頁</a>[cite: 1, 2]
+        </div>
+
+        <div class="warning-box" id="warningBox"></div>
+        <div class="penalty-box" id="penaltyBox"></div>
+    </div>
 </div>
 
-<div class="form-group"><label for="destination">4. 預計前往地點（含入境與不入境過境轉機）：</label> <select id="destination"><option value="mainland">僅前往中國大陸地區</option><option value="hk_macau">僅前往香港或澳門地區</option><option value="both">同時前往大陸及港澳地區（連訪/轉機）</option> </select></div>
-
-<div class="form-group"><label for="purpose">5. 出國事由：</label> <select id="purpose"><option value="official">因公務事由前往</option><option value="private">非因公務事由前往（觀光、休假、私事）</option> </select></div>
-
-<div class="form-group" id="meetGroup" style="display: none;"><label for="meetTarget">6. 是否會見或聯繫特定身分人員（赴港澳）：</label> <select id="meetTarget"><option value="no">未會見或聯繫特定身分人員</option><option value="yes">會見或聯繫特定身分人員</option> </select></div>
-<button onclick="calculateGuidance()">產生申請指引與辦理期限</button>
-
-<div class="result-card" id="result">
-<div class="tag" id="identityTag">判斷結果</div>
-
-<div class="deadline-badge" id="deadlineBadge" style="display:none;">&nbsp;</div>
-
-<div class="result-title" id="resultTitle">辦理程序與作業流程指引：</div>
-
-<ol class="step-list" id="stepList">
-</ol>
-
-<div class="download-box" id="downloadBox">📁 <strong>所需申請表件與登錄連結：</strong>
-
-<ul id="downloadList">
-</ul>
-
-<hr style="border:0; border-top:1px solid #bae6fd; margin:10px 0;" /> 👉 <a href="https://www.ncyu.edu.tw/personnel/Subject/Detail/232082?nodeId=35206" rel="noopener noreferrer" target="_blank">前往國立嘉義大學人事室&mdash;赴陸港澳專區首頁</a>[cite: 1, 2]</div>
-
-<div class="warning-box" id="warningBox">&nbsp;</div>
-
-<div class="penalty-box" id="penaltyBox">&nbsp;</div>
-</div>
-</div>
 <script>
 function toggleRankSelect() {
     const identity = document.getElementById('identity').value;
@@ -379,5 +416,7 @@ function calculateGuidance() {
     warningBox.innerHTML = warnings.join('<br>');
     penaltyBox.innerHTML = penalties.length > 0 ? penalties.join('<br>') : "<strong>懲處規定：</strong>一般教師依校內一般請假差勤規定辦理。";
 }
-</script></body>
+</script>
+
+</body>
 </html>
