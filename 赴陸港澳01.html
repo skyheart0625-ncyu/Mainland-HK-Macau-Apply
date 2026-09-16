@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>國立嘉義大學教職員赴陸港澳申請指引</title>
-    <style>
-        * {
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>國立嘉義大學教職員赴陸港澳申請指引</title>
+	<style type="text/css">* {
             box-sizing: border-box;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         }
@@ -158,83 +155,49 @@
             font-size: 0.88rem;
             line-height: 1.5;
         }
-    </style>
+	</style>
 </head>
 <body>
-
 <div class="container">
-    <h1>國立嘉義大學教職員赴陸港澳申請指引</h1>
-    
-    <div class="form-group">
-        <label for="identity">1. 請選擇您的身分類別：</label>
-        <select id="identity" onchange="toggleRankSelect()">
-            <option value="">-- 請選擇身分 --</option>
-            <option value="teacher">一般專任教師（未兼任行政職務）</option>
-            <option value="admin_teacher">兼任行政職務教師 / 公務人員</option>
-            <option value="contract_staff">一般未分簡薦委人員（專案/契約人員）</option>
-        </select>
-    </div>
+<h1>國立嘉義大學教職員赴陸港澳申請指引</h1>
 
-    <div class="form-group" id="rankGroup" style="display: none;">
-        <label for="rank">2. 請選擇兼任行政職務層級（以支領主管加給為依據）：</label>
-        <select id="rank">
-            <option value="rank12">相當簡任第 12 職等以上</option>
-            <option value="rank11">相當簡任第 11 職等（一級主管：如教務長、院長、系主任、中心主任等）</option>
-            <option value="rank10">相當簡任第 10 職等以下（二級主管：如組長等）</option>
-        </select>
-    </div>
+<div class="form-group"><label for="identity">1. 請選擇您的身分類別：</label> <select id="identity" onchange="toggleRankSelect()"><option value="">-- 請選擇身分 --</option><option value="teacher">一般專任教師（未兼任行政職務）</option><option value="admin_teacher">兼任行政職務教師 / 公務人員</option><option value="contract_staff">一般未分簡薦委人員（專案/契約人員）</option> </select></div>
 
-    <div class="form-group">
-        <label for="exitDate">3. 預計出境日期（查驗通關日）：</label>
-        <input type="date" id="exitDate">
-        <div class="date-hint">?? 提醒：若搭乘凌晨航班（如 01:00 飛機），須於前一日晚上（如 23:00）通報出關，請輸入前一日之日期，以免無法出境！</div>
-    </div>
+<div class="form-group" id="rankGroup" style="display: none;"><label for="rank">2. 請選擇兼任行政職務層級（以支領主管加給為依據）：</label> <select id="rank"><option value="rank12">相當簡任第 12 職等以上</option><option value="rank11">相當簡任第 11 職等（一級主管：如教務長、院長、系主任、中心主任等）</option><option value="rank10">相當簡任第 10 職等以下（二級主管：如組長等）</option> </select></div>
 
-    <div class="form-group">
-        <label for="destination">4. 預計前往地點（含入境與不入境過境轉機）：</label>
-        <select id="destination">
-            <option value="mainland">僅前往中國大陸地區</option>
-            <option value="hk_macau">僅前往香港或澳門地區</option>
-            <option value="both">同時前往大陸及港澳地區（連訪/轉機）</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label for="purpose">5. 出國事由：</label>
-        <select id="purpose">
-            <option value="official">因公務事由前往</option>
-            <option value="private">非因公務事由前往（觀光、休假、私事）</option>
-        </select>
-    </div>
-
-    <div class="form-group" id="meetGroup" style="display: none;">
-        <label for="meetTarget">6. 是否會見或聯繫特定身分人員（赴港澳）：</label>
-        <select id="meetTarget">
-            <option value="no">未會見或聯繫特定身分人員</option>
-            <option value="yes">會見或聯繫特定身分人員</option>
-        </select>
-    </div>
-
-    <button onclick="calculateGuidance()">產生申請指引與辦理期限</button>
-
-    <div id="result" class="result-card">
-        <div class="tag" id="identityTag">判斷結果</div>
-        <div id="deadlineBadge" class="deadline-badge" style="display:none;"></div>
-        <div class="result-title" id="resultTitle">辦理程序與作業流程指引：</div>
-        <ol class="step-list" id="stepList"></ol>
-        
-        <div class="download-box" id="downloadBox">
-            ?? <strong>所需申請表件與登錄連結：</strong>
-            <ul id="downloadList"></ul>
-            <hr style="border:0; border-top:1px solid #bae6fd; margin:10px 0;">
-            ?? <a href="https://www.ncyu.edu.tw/personnel/Subject/Detail/232082?nodeId=35206" target="_blank" rel="noopener noreferrer">前往國立嘉義大學人事室—赴陸港澳專區首頁</a>[cite: 1, 2]
-        </div>
-
-        <div class="warning-box" id="warningBox"></div>
-        <div class="penalty-box" id="penaltyBox"></div>
-    </div>
+<div class="form-group"><label for="exitDate">3. 預計出境日期（查驗通關日）：</label> <input id="exitDate" type="date" />
+<div class="date-hint">⚠️ 提醒：若搭乘凌晨航班（如 01:00 飛機），須於前一日晚上（如 23:00）通報出關，請輸入前一日之日期，以免無法出境！</div>
 </div>
 
+<div class="form-group"><label for="destination">4. 預計前往地點（含入境與不入境過境轉機）：</label> <select id="destination"><option value="mainland">僅前往中國大陸地區</option><option value="hk_macau">僅前往香港或澳門地區</option><option value="both">同時前往大陸及港澳地區（連訪/轉機）</option> </select></div>
+
+<div class="form-group"><label for="purpose">5. 出國事由：</label> <select id="purpose"><option value="official">因公務事由前往</option><option value="private">非因公務事由前往（觀光、休假、私事）</option> </select></div>
+
+<div class="form-group" id="meetGroup" style="display: none;"><label for="meetTarget">6. 是否會見或聯繫特定身分人員（赴港澳）：</label> <select id="meetTarget"><option value="no">未會見或聯繫特定身分人員</option><option value="yes">會見或聯繫特定身分人員</option> </select></div>
+<button onclick="calculateGuidance()">產生申請指引與辦理期限</button>
+
+<div class="result-card" id="result">
+<div class="tag" id="identityTag">判斷結果</div>
+
+<div class="deadline-badge" id="deadlineBadge" style="display:none;">&nbsp;</div>
+
+<div class="result-title" id="resultTitle">辦理程序與作業流程指引：</div>
+
+<ol class="step-list" id="stepList">
+</ol>
+
+<div class="download-box" id="downloadBox">📁 <strong>所需申請表件與登錄連結：</strong>
+
+<ul id="downloadList">
+</ul>
+
+<hr style="border:0; border-top:1px solid #bae6fd; margin:10px 0;" /> 👉 <a href="https://www.ncyu.edu.tw/personnel/Subject/Detail/232082?nodeId=35206" rel="noopener noreferrer" target="_blank">前往國立嘉義大學人事室&mdash;赴陸港澳專區首頁</a>[cite: 1, 2]</div>
+
+<div class="warning-box" id="warningBox">&nbsp;</div>
+
+<div class="penalty-box" id="penaltyBox">&nbsp;</div>
+</div>
+</div>
 <script>
 function toggleRankSelect() {
     const identity = document.getElementById('identity').value;
@@ -327,7 +290,7 @@ function calculateGuidance() {
         steps.push("<strong>【行前動態登錄】</strong>赴陸港澳前至陸委會「國人赴陸港澳動態登錄系統」進行線上登錄。");
         steps.push("<strong>【完成手續】</strong>未兼任行政職教師無須送內政部或校長事前核准，亦無須填寫返臺通報表。");
         
-        files.push(`?? <a href="${urlMAC}" target="_blank">大陸委員會—國人赴陸港澳動態登錄系統 (線上登錄)</a>`);
+        files.push(`🌐 <a href="${urlMAC}" target="_blank">大陸委員會—國人赴陸港澳動態登錄系統 (線上登錄)</a>`);
     } else {
         // --- 二、兼任行政職教師 / 公務人員 / 契約人員 ---
         
@@ -342,16 +305,16 @@ function calculateGuidance() {
                 steps.push("赴陸前至陸委會「國人赴陸港澳動態登錄系統」進行線上登錄。");
                 steps.push(" <strong>返臺 1 星期內</strong>填寫「赴陸人員返臺通報表」，送人事室<strong>通報內政部</strong>。");
                 
-                files.push(`?? <a href="${urlPortal}" target="_blank">簡任第 11 職等以上人員進入大陸地區申請表 (下載)</a>`);
-                files.push(`?? <a href="${urlPortal}" target="_blank">赴陸人員返臺通報表 (下載)</a>`);
+                files.push(`📄 <a href="${urlPortal}" target="_blank">簡任第 11 職等以上人員進入大陸地區申請表 (下載)</a>`);
+                files.push(`📄 <a href="${urlPortal}" target="_blank">赴陸人員返臺通報表 (下載)</a>`);
             } else {
                 steps.push(" <strong>至遲出境日 2 週前</strong>填具「簡任第 10 職等以下赴大陸地區申請表」，送人事室辦理（會辦政風）。");
                 steps.push("奉<strong>校長核准同意</strong>。");
                 steps.push("赴陸前至陸委會「國人赴陸港澳動態登錄系統」進行線上登錄。");
                 steps.push("5. <strong>返臺 1 星期內</strong>填寫「赴陸人員返臺通報表」，送人事室<strong>備查</strong>。");
                 
-                files.push(`?? <a href="${urlPortal}" target="_blank">簡任第 10 職等以下人員赴大陸地區申請表 (下載)</a>`);
-                files.push(`?? <a href="${urlPortal}" target="_blank">赴陸人員返臺通報表 (下載)</a>`);
+                files.push(`📄 <a href="${urlPortal}" target="_blank">簡任第 10 職等以下人員赴大陸地區申請表 (下載)</a>`);
+                files.push(`📄 <a href="${urlPortal}" target="_blank">赴陸人員返臺通報表 (下載)</a>`);
             }
             penalties.push("<strong>赴陸違規懲處：</strong>未依規定完成申請程序者，依公務人員考績法及學校相關法規懲處。");
         }
@@ -367,11 +330,11 @@ function calculateGuidance() {
                 } else {
                     steps.push(" <strong>出境日 2 週前</strong>填具因公赴港澳通報表，送人事室通報<strong>陸委會</strong>。");
                 }
-                files.push(`?? <a href="${urlPortal}" target="_blank">公務人員因公赴香港澳門通報表 (下載)</a>`);
+                files.push(`📄 <a href="${urlPortal}" target="_blank">公務人員因公赴香港澳門通報表 (下載)</a>`);
             } else {
                 if (meetTarget === 'no') {
                     steps.push(" <strong>出境日 2 週前</strong>填具非因公赴港澳通報表送人事室。");
-                    files.push(`?? <a href="${urlPortal}" target="_blank">非因公務事由赴香港或澳門通報表 (下載)</a>`);
+                    files.push(`📄 <a href="${urlPortal}" target="_blank">非因公務事由赴香港或澳門通報表 (下載)</a>`);
                 }
             }
 
@@ -381,7 +344,7 @@ function calculateGuidance() {
                 } else {
                     steps.push("3. <strong>出境日 2 週前</strong>填具會見或聯繫特定身分人員通報表送人事室通報。");
                 }
-                files.push(`?? <a href="${urlPortal}" target="_blank">赴香港或澳門會見或聯繫特定身分人員通報表 (下載)</a>`);
+                files.push(`📄 <a href="${urlPortal}" target="_blank">赴香港或澳門會見或聯繫特定身分人員通報表 (下載)</a>`);
             }
 
             steps.push("至陸委會官網「國人赴陸港澳動態登錄系統」進行登錄，並將<strong>登錄結果影送人事室留存</strong>。");
@@ -390,11 +353,11 @@ function calculateGuidance() {
             penalties.push("<strong>赴港澳未依規通報懲處：</strong>依校內人事法規懲處。");
         }
 
-        files.push(`?? <a href="${urlMAC}" target="_blank">大陸委員會—國人赴陸港澳動態登錄系統 (線上登錄)</a>`);
+        files.push(`🌐 <a href="${urlMAC}" target="_blank">大陸委員會—國人赴陸港澳動態登錄系統 (線上登錄)</a>`);
     }
 
     // --- 通用注意事項 ---
-    warnings.push("<strong>?? 國立嘉義大學重點宣導與提醒：</strong>");
+    warnings.push("<strong>⚠️ 國立嘉義大學重點宣導與提醒：</strong>");
     warnings.push(" <strong>出境日期以「查驗通關日」為準：</strong>若出關與搭機時間不同（例如凌晨 01:00 飛機，在前一日晚上 23:00 查驗出關），<strong>申請赴陸港澳之起始日期應以「前一日（出關日）」為準</strong>，避免因許可生效日期不符而無法出境。");
     warnings.push(" <strong>過境轉機：</strong>搭乘航班經中國大陸或港澳地區機場「入境轉機」或「不入境之過境轉機」，均須依上述規定辦理。");
     warnings.push(" <strong>不分平日假日：</strong>本校教師不分平日、假日赴港澳/大陸，行前均應至線上簽核差勤系統完成出國申請並經核准。");
@@ -416,8 +379,5 @@ function calculateGuidance() {
     warningBox.innerHTML = warnings.join('<br>');
     penaltyBox.innerHTML = penalties.length > 0 ? penalties.join('<br>') : "<strong>懲處規定：</strong>一般教師依校內一般請假差勤規定辦理。";
 }
-</script>
-
-</body>
+</script></body>
 </html>
-
